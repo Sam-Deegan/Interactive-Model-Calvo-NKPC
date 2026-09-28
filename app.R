@@ -661,7 +661,7 @@ B_03_13_debounce_ms_int <- 250L
 ###### B_03_14: Version ########################################################
 # Note: Semantic version, shown in the footer; CHANGELOG.md has the history.
 
-B_03_14_version_chr <- "1.0.6"
+B_03_14_version_chr <- "1.0.7"
 
 ###### B_03_15: Source Repository ##############################################
 # Note: The GitHub repo, linked from the footer.
@@ -1467,36 +1467,26 @@ F_01_01_app_server_fn <- function(input, output, session) {
     req(stage_num() >= 4)
     tags$div(
       class = "narrative",
-      tags$div(class = "nar-head",
-               "What the New Keynesian Curve Says About Policy"),
+      tags$div(class = "nar-head", "What the Curve Says About Policy"),
       tags$p(HTML(paste(
-        "<strong>Only expected future inflation enters.</strong> Lagged",
-        "inflation has no role in the pure model, so there is nothing for a",
-        "recession to work against. A central bank that can move",
-        "expectations has done the job without opening a gap at all: set the",
-        "backward-looking share to zero and every bar on the right is empty."
+        "Only expected future inflation enters the pure curve, so a central",
+        "bank that can move expectations disinflates without opening a gap.",
+        "Set the backward-looking share to zero and every bar on the right",
+        "is empty. Announcing a slow glide instead does worse: the required",
+        "gap turns positive, because the bank must run the economy hot to",
+        "keep inflation as high as it promised, and the sacrifice ratio goes",
+        "negative. With forward-looking pricing there is no reason to go",
+        "slowly."
       ))),
       tags$p(HTML(paste(
-        "<strong>Gradualism is worse than useless here.</strong> Announce a",
-        "slow glide down instead of an immediate move and the required gap",
-        "turns positive: the central bank would have to run the economy hot",
-        "to keep inflation as high as it promised. The sacrifice ratio goes",
-        "negative, which is the model telling you that with forward-looking",
-        "pricing there is no reason to go slowly."
-      ))),
-      tags$p(HTML(paste(
-        "<strong>This is too strong to be true.</strong> Real disinflations",
-        "cost output. The usual repair is the hybrid curve: a share of",
-        "pricing is indexed or rule of thumb, which puts lagged inflation",
-        "back in and brings the recession back with it."
-      ))),
-      tags$p(HTML(paste(
-        "<strong>The econometric Phillips curve.</strong> Regressions of",
-        "inflation on its own lags and a measure of slack are estimating a",
-        "relationship in which lagged inflation is standing in for expected",
-        "inflation. The coefficients are therefore not structural: change",
-        "the monetary regime and they change. That is the Lucas critique",
-        "applied here, and it is why the 1970s curve broke down."
+        "Real disinflations cost output, so this is too strong. The usual",
+        "repair is the hybrid curve: a share of prices is indexed or set by",
+        "rule of thumb, which puts lagged inflation back in and the recession",
+        "with it. It also explains why regressions of inflation on its own",
+        "lags and slack are not structural. Lagged inflation is standing in",
+        "for expected inflation, so the coefficients change when the",
+        "monetary regime changes. That is the Lucas critique, and it is why",
+        "the 1970s curve broke down."
       )))
     )
   })
@@ -1507,24 +1497,19 @@ F_01_01_app_server_fn <- function(input, output, session) {
       class = "narrative",
       tags$div(class = "nar-head", "Reading the Firm-Level Evidence"),
       tags$p(HTML(paste(
-        "<strong>What is measured.</strong> Scanner and price-collection",
-        "data give the frequency with which an individual price changes.",
-        "That is exactly 1 − θ, so the micro evidence pins down the one",
-        "parameter the whole model turns on."
+        "Scanner and price-collection data give the frequency with which an",
+        "individual price changes. That is 1 − θ, so the micro evidence pins",
+        "down the one parameter the model turns on. The studies disagree",
+        "mainly over temporary sales that revert to the old price. Counting",
+        "them makes prices look far more flexible; excluding them roughly",
+        "doubles the implied duration and so roughly halves κ."
       ))),
       tags$p(HTML(paste(
-        "<strong>Why the studies disagree.</strong> Much of the measured",
-        "price change is temporary sales that revert to the old price.",
-        "Counting them makes prices look far more flexible; excluding them",
-        "roughly doubles the implied duration, and so roughly halves κ."
-      ))),
-      tags$p(HTML(paste(
-        "<strong>The remaining puzzle.</strong> Even the longest durations",
-        "here imply a steeper curve than aggregate data show. The standard",
-        "reconciliation is strategic complementarity: a firm that can reset",
-        "still moves only part of the way, because its competitors are",
-        "stuck. Real rigidities do the work that nominal rigidity alone",
-        "cannot."
+        "Even the longest durations here imply a steeper curve than",
+        "aggregate data show. The usual reconciliation is strategic",
+        "complementarity: a firm that can reset moves only part of the way",
+        "because its competitors are stuck. Real rigidities do the work that",
+        "nominal rigidity alone cannot."
       )))
     )
   })
