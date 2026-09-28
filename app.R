@@ -661,7 +661,7 @@ B_03_13_debounce_ms_int <- 250L
 ###### B_03_14: Version ########################################################
 # Note: Semantic version, shown in the footer; CHANGELOG.md has the history.
 
-B_03_14_version_chr <- "1.0.1"
+B_03_14_version_chr <- "1.0.2"
 
 ###### B_03_15: Source Repository ##############################################
 # Note: The GitHub repo, linked from the footer.
@@ -736,9 +736,6 @@ D_01_01_weights_fn <- function(par, ref = NULL) {
     }) +
     coord_cartesian(xlim = x_lim, ylim = y_lim, expand = FALSE) +
     labs(
-      title = paste0("Weights in the Reset Price: one lasts ",
-                     T_02_05_num_fn(C_01_01_duration_fn(par), 1),
-                     " quarters"),
       x = expression(bold("Quarters ahead (" * k * ")")),
       y = expression(bold("Weight in the reset price (" * z[t] * ")")),
       caption = paste0(
@@ -747,7 +744,7 @@ D_01_01_weights_fn <- function(par, ref = NULL) {
       )
     ) +
     T_02_01_theme_fn() +
-    theme(aspect.ratio = 1)
+    theme(aspect.ratio = 2 / 3)
 }
 
 ###### D_01_02: The Price Level Creeps #########################################
@@ -777,7 +774,6 @@ D_01_02_creep_fn <- function(par, ref = NULL) {
     T_02_02_mark_y_fn(c(0, 1), expression(p[0], p^"*")) +
     coord_cartesian(ylim = c(0, 1.12)) +
     labs(
-      title = "The Price Level Creeps, It Does Not Jump",
       x = expression(bold("Quarters since the shock (" * t * ")")),
       y = expression(bold("Price level (" * p[t] * ")")),
       caption = paste0(
@@ -856,8 +852,6 @@ D_02_01_curve_fn <- function(par, ref = NULL) {
              parse = TRUE, size = 3.2, hjust = 0.5, vjust = -1.15,
              colour = T_01_01_palette_vec[["muted"]]) +
     labs(
-      title = paste0("New Keynesian Phillips Curve (NKPC): κ = ",
-                     T_02_05_num_fn(kap, 3)),
       x = expression(bold("Output gap (" * y[t] * ")")),
       y = expression(bold("Inflation (" * pi[t] * ")")),
       caption = paste(
@@ -866,7 +860,7 @@ D_02_01_curve_fn <- function(par, ref = NULL) {
       )
     ) +
     T_02_01_theme_fn(grid = "none") +
-    theme(aspect.ratio = 1)
+    theme(aspect.ratio = 2 / 3)
 }
 
 ###### D_02_02: The Slope Against Rigidity #####################################
@@ -899,7 +893,6 @@ D_02_02_slope_fn <- function(par, ref = NULL) {
     T_02_02_mark_y_fn(now, expression(kappa)) +
     coord_cartesian(ylim = c(0, stats::quantile(df$kappa, 0.9))) +
     labs(
-      title = "Slope of the New Keynesian Phillips Curve (NKPC)",
       x = expression(bold("Share who cannot reset (" * theta * ")")),
       y = expression(bold("Slope of the Phillips curve (" * kappa * ")")),
       caption = paste(
@@ -935,7 +928,6 @@ D_03_01_path_fn <- function(par, ref = NULL) {
               linewidth = 1.2) +
     T_02_02_mark_y_fn(par$pi_target, expression(pi^"*")) +
     labs(
-      title = "The Inflation Path the Central Bank Announces",
       x = expression(bold("Quarter (" * t * ")")),
       y = expression(bold("Inflation (" * pi[t] * ")")),
       caption = paste0("From ", T_02_05_num_fn(par$pi_start, 1),
@@ -975,14 +967,6 @@ D_03_02_gap_fn <- function(par, ref = NULL) {
                T_01_01_palette_vec[["navy"]]) +
     T_02_02_mark_y_fn(0, expression(y[t] == 0)) +
     labs(
-      title = if (free) {
-        "No recession at all: the announcement does the whole job"
-      } else {
-        paste0("Sacrifice Ratio (SR) ", T_02_05_num_fn(sac$ratio, 1),
-               ": ", T_02_05_num_fn(sac$loss, 1),
-               " points of output for ", T_02_05_num_fn(sac$fall, 1),
-               " of inflation")
-      },
       x = expression(bold("Quarter (" * t * ")")),
       y = expression(bold("Output gap required (" * y[t] * ")")),
       caption = if (free) {
@@ -1041,7 +1025,6 @@ D_03_03_micro_fn <- function(par, evidence, ref = NULL) {
     T_02_02_mark_y_fn(now$kappa, expression(kappa)) +
     coord_cartesian(ylim = c(0, max(ev$kappa) * 2.2)) +
     labs(
-      title = "Price Durations and the New Keynesian Phillips Curve (NKPC)",
       x = expression(bold("Months between price changes (" * 1 / (1 - theta) *
                             ")")),
       y = expression(bold("Implied slope (" * kappa * ")")),
